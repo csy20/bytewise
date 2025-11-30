@@ -16,12 +16,14 @@ class LessonTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(24),
       ),
-      color: const Color(0xFF1e2738),
       child: InkWell(
         onTap: () {
           Navigator.push(
@@ -35,7 +37,6 @@ class LessonTile extends StatelessWidget {
             ),
           );
         },
-        borderRadius: BorderRadius.circular(12),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Row(
@@ -44,23 +45,15 @@ class LessonTile extends StatelessWidget {
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Color(0xFF00b4d8),
-                      Color(0xFF48cae4),
-                    ],
-                  ),
+                  color: colorScheme.primaryContainer,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Center(
                   child: Text(
                     '$lessonNumber',
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: textTheme.titleMedium?.copyWith(
+                      color: colorScheme.onPrimaryContainer,
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
                     ),
                   ),
                 ),
@@ -69,16 +62,14 @@ class LessonTile extends StatelessWidget {
               Expanded(
                 child: Text(
                   lesson.title,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
+                  style: textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w500,
                   ),
                 ),
               ),
-              const Icon(
+              Icon(
                 Icons.chevron_right,
-                color: Color(0xFF00b4d8),
+                color: colorScheme.primary,
               ),
             ],
           ),
