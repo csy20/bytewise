@@ -26,13 +26,19 @@ class HomeScreen extends ConsumerWidget {
               child: Text('No courses available'),
             );
           }
-          return ListView.builder(
+          return GridView.builder(
             padding: const EdgeInsets.all(16),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 12,
+              mainAxisSpacing: 12,
+              childAspectRatio: 1,
+            ),
             itemCount: courses.length,
             itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: CourseCard(course: courses[index]),
+              return CourseCard(
+                course: courses[index],
+                index: index + 1,
               );
             },
           );
