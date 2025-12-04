@@ -119,20 +119,19 @@ class ContentLoader {
     List<(String, String)> files,
   ) async {
     List<Lesson> lessons = [];
-    
+
     for (var (fileName, title) in files) {
-      try {
-        final content = await rootBundle.loadString('$basePath$fileName');
-        lessons.add(Lesson(
-          title: title,
-          fileName: fileName,
-          content: content,
-        ));
-      } catch (e) {
-        debugPrint('Error loading $fileName: $e');
-      }
+      lessons.add(Lesson(
+        title: title,
+        fileName: fileName,
+        path: '$basePath$fileName',
+      ));
     }
-    
+
     return lessons;
+  }
+
+  static Future<String> loadLessonContent(String path) async {
+    return await rootBundle.loadString(path);
   }
 }

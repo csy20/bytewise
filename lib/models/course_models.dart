@@ -1,12 +1,14 @@
 class Lesson {
   final String title;
   final String fileName;
-  final String content;
+  final String? content;
+  final String path;
 
   Lesson({
     required this.title,
     required this.fileName,
-    required this.content,
+    this.content,
+    required this.path,
   });
 }
 

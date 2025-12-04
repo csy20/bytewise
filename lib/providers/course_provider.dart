@@ -6,6 +6,10 @@ final courseProvider = FutureProvider<List<Course>>((ref) async {
   return await ContentLoader.loadCourses();
 });
 
+final lessonContentProvider = FutureProvider.family<String, String>((ref, path) async {
+  return await ContentLoader.loadLessonContent(path);
+});
+
 final courseListProvider = StateNotifierProvider<CourseListNotifier, AsyncValue<List<Course>>>((ref) {
   return CourseListNotifier();
 });
