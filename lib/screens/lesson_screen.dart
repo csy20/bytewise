@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import '../models/course_models.dart';
+import '../utils/code_element_builder.dart';
 
 class LessonScreen extends StatelessWidget {
   final Lesson lesson;
@@ -44,6 +45,9 @@ class LessonScreen extends StatelessWidget {
       body: SafeArea(
         child: Markdown(
           data: lesson.content,
+          builders: {
+            'code': CodeElementBuilder(),
+          },
           styleSheet: MarkdownStyleSheet(
             h1: textTheme.headlineMedium?.copyWith(
               color: colorScheme.primary,
@@ -60,15 +64,15 @@ class LessonScreen extends StatelessWidget {
             p: textTheme.bodyLarge?.copyWith(
               height: 1.5,
             ),
-            code: textTheme.bodyMedium?.copyWith(
-              color: colorScheme.onSurfaceVariant,
-              backgroundColor: colorScheme.surfaceContainerHighest,
-              fontFamily: 'monospace',
-            ),
-            codeblockDecoration: BoxDecoration(
-              color: colorScheme.surfaceContainerHighest,
-              borderRadius: const BorderRadius.all(Radius.circular(8)),
-            ),
+            // code: textTheme.bodyMedium?.copyWith(
+            //   color: colorScheme.onSurfaceVariant,
+            //   backgroundColor: colorScheme.surfaceContainerHighest,
+            //   fontFamily: 'monospace',
+            // ),
+            // codeblockDecoration: BoxDecoration(
+            //   color: colorScheme.surfaceContainerHighest,
+            //   borderRadius: const BorderRadius.all(Radius.circular(8)),
+            // ),
             blockquote: textTheme.bodyMedium?.copyWith(
               color: colorScheme.onSurface.withOpacity(0.6),
               fontStyle: FontStyle.italic,

@@ -14,13 +14,16 @@ class CourseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final icon = course.modules.isNotEmpty ? course.modules.first.icon : '📚';
-    final label = _formatLabel();
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
 
     return Card(
-      elevation: 2,
+      margin: EdgeInsets.zero,
+      elevation: 3,
+      color: colorScheme.surface,
+      shadowColor: Colors.black.withOpacity(0.12),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(18),
       ),
       child: InkWell(
         onTap: () {
@@ -31,24 +34,29 @@ class CourseCard extends StatelessWidget {
             ),
           );
         },
-        borderRadius: BorderRadius.circular(16),
-        child: Center(
+        borderRadius: BorderRadius.circular(18),
+        child: Container(
+          decoration: BoxDecoration(
+            color: colorScheme.surfaceVariant.withOpacity(
+              Theme.of(context).brightness == Brightness.dark ? 0.25 : 0.6,
+            ),
+            borderRadius: BorderRadius.circular(18),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                icon,
-                style: const TextStyle(fontSize: 36),
+                course.modules.first.icon,
+                style: const TextStyle(fontSize: 34),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 14),
               Text(
-                label,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+                _formatLabel(),
+                style: textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: colorScheme.onSurface,
+                ),
               ),
             ],
           ),

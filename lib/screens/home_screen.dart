@@ -30,17 +30,15 @@ class HomeScreen extends ConsumerWidget {
             padding: const EdgeInsets.all(16),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              crossAxisSpacing: 12,
-              mainAxisSpacing: 12,
-              childAspectRatio: 1,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              childAspectRatio: 0.95,
             ),
             itemCount: courses.length,
-            itemBuilder: (context, index) {
-              return CourseCard(
-                course: courses[index],
-                index: index + 1,
-              );
-            },
+            itemBuilder: (context, index) => CourseCard(
+              course: courses[index],
+              index: index + 1,
+            ),
           );
         },
         loading: () => const Center(
