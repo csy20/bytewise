@@ -6,14 +6,14 @@
 
 ## Table of Contents
 
-1. [General Questions](#general-questions)
-2. [Getting Started](#getting-started)
-3. [Basic Workflow Questions](#basic-workflow-questions)
-4. [Branching Questions](#branching-questions)
-5. [Collaboration Questions](#collaboration-questions)
-6. [Troubleshooting Questions](#troubleshooting-questions)
-7. [Best Practices](#best-practices)
-8. [Advanced Topics](#advanced-topics)
+1. General Questions
+2. Getting Started
+3. Basic Workflow Questions
+4. Branching Questions
+5. Collaboration Questions
+6. Troubleshooting Questions
+7. Best Practices
+8. Advanced Topics
 
 ---
 

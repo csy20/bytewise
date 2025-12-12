@@ -5,16 +5,16 @@
 ---
 
 ## 📋 Table of Contents
-1. [Setup & Configuration](#setup--configuration)
-2. [Creating Repositories](#creating-repositories)
-3. [Basic Workflow](#basic-workflow)
-4. [Branching & Merging](#branching--merging)
-5. [Remote Operations](#remote-operations)
-6. [Undoing Changes](#undoing-changes)
-7. [Stashing](#stashing)
-8. [Viewing History](#viewing-history)
-9. [Tagging](#tagging)
-10. [Advanced Operations](#advanced-operations)
+1. Setup & Configuration
+2. Creating Repositories
+3. Basic Workflow
+4. Branching & Merging
+5. Remote Operations
+6. Undoing Changes
+7. Stashing
+8. Viewing History
+9. Tagging
+10. Advanced Operations
 
 ---
 
