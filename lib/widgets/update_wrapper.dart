@@ -28,9 +28,11 @@ class _UpdateWrapperState extends State<UpdateWrapper> with WidgetsBindingObserv
     // Check for updates once when app starts
     if (!_hasCheckedOnStart) {
       _hasCheckedOnStart = true;
-      // Delay slightly to ensure context is ready
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _updateService.checkForUpdate(context);
+      // Delay to ensure app is fully initialized before calling Play Core
+      Future.delayed(const Duration(seconds: 2), () {
+        if (mounted) {
+          _updateService.checkForUpdate(context);
+        }
       });
     }
   }

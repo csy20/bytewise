@@ -47,7 +47,7 @@ class CourseCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                course.modules.first.icon,
+                course.modules.isNotEmpty ? course.modules.first.icon : '📚',
                 style: const TextStyle(fontSize: 34),
               ),
               const SizedBox(height: 14),

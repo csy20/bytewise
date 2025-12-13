@@ -22,16 +22,16 @@ class UpdateService {
     // Only works on Android
     if (!Platform.isAndroid) return;
 
-    // Check connectivity first
-    final connectivity = await Connectivity().checkConnectivity();
-    if (connectivity.contains(ConnectivityResult.none)) {
-      if (context.mounted) {
-        _showOfflineMessage(context);
-      }
-      return;
-    }
-
     try {
+      // Check connectivity first
+      final connectivity = await Connectivity().checkConnectivity();
+      if (connectivity.contains(ConnectivityResult.none)) {
+        if (context.mounted) {
+          _showOfflineMessage(context);
+        }
+        return;
+      }
+
       _updateInfo = await InAppUpdate.checkForUpdate();
 
       if (_updateInfo?.updateAvailability == UpdateAvailability.updateAvailable) {
@@ -56,7 +56,7 @@ class UpdateService {
         }
       }
     } catch (e) {
-      // Fail silently - Play API might not be available (sideloaded app, emulator, etc.)
+      // Fail silently - Play API or connectivity might not be available
       debugPrint('UpdateService: Error checking for update: $e');
     }
   }
