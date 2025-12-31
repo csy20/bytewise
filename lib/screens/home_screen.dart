@@ -28,19 +28,31 @@ class HomeScreen extends ConsumerWidget {
                 child: Text('No courses available'),
               );
             }
-            return GridView.builder(
-              padding: const EdgeInsets.all(16),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-                childAspectRatio: 0.95,
-              ),
-              itemCount: courses.length,
-              itemBuilder: (context, index) => CourseCard(
-                course: courses[index],
-                index: index + 1,
-              ),
+            return LayoutBuilder(
+              builder: (context, constraints) {
+                // Responsive column count based on width
+                int crossAxisCount = 2; // default for phones
+                if (constraints.maxWidth >= 900) {
+                  crossAxisCount = 4; // large tablets
+                } else if (constraints.maxWidth >= 600) {
+                  crossAxisCount = 3; // small tablets
+                }
+                
+                return GridView.builder(
+                  padding: const EdgeInsets.all(16),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    crossAxisSpacing: 16,
+                    mainAxisSpacing: 16,
+                    childAspectRatio: 0.95,
+                  ),
+                  itemCount: courses.length,
+                  itemBuilder: (context, index) => CourseCard(
+                    course: courses[index],
+                    index: index + 1,
+                  ),
+                );
+              },
             );
           },
           loading: () => const Center(
