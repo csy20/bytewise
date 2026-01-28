@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/course_models.dart';
 import '../utils/code_element_builder.dart';
 
-class LessonScreen extends StatelessWidget {
+class LessonScreen extends ConsumerWidget {
   final Lesson lesson;
   final Module module;
   final int lessonNumber;
@@ -16,7 +17,7 @@ class LessonScreen extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 
@@ -64,17 +65,8 @@ class LessonScreen extends StatelessWidget {
             p: textTheme.bodyLarge?.copyWith(
               height: 1.5,
             ),
-            // code: textTheme.bodyMedium?.copyWith(
-            //   color: colorScheme.onSurfaceVariant,
-            //   backgroundColor: colorScheme.surfaceContainerHighest,
-            //   fontFamily: 'monospace',
-            // ),
-            // codeblockDecoration: BoxDecoration(
-            //   color: colorScheme.surfaceContainerHighest,
-            //   borderRadius: const BorderRadius.all(Radius.circular(8)),
-            // ),
             blockquote: textTheme.bodyMedium?.copyWith(
-              color: colorScheme.onSurface.withOpacity(0.6),
+              color: colorScheme.onSurface.withValues(alpha: 0.6),
               fontStyle: FontStyle.italic,
             ),
             listBullet: TextStyle(

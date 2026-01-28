@@ -4,21 +4,55 @@ import '../providers/course_provider.dart';
 import '../widgets/course_card.dart';
 import '../widgets/theme_toggle_button.dart';
 import '../widgets/update_wrapper.dart';
+import '../widgets/streak_counter_widget.dart';
+import '../services/streak_service.dart';
 
-class HomeScreen extends ConsumerWidget {
+/// Global StreakService instance
+final streakServiceProvider = Provider<StreakService>((ref) => StreakService());
+
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  late StreakService _streakService;
+
+  @override
+  void initState() {
+    super.initState();
+    _streakService = ref.read(streakServiceProvider);
+    _initStreak();
+  }
+
+  Future<void> _initStreak() async {
+    await _streakService.init();
+    setState(() {});
+  }
+
+  void _onStreakUpdated() {
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final coursesAsync = ref.watch(courseListProvider);
 
     return UpdateWrapper(
       child: Scaffold(
         appBar: AppBar(
           title: const Text('ByteWise'),
-          actions: const [
-            ThemeToggleButton(),
-            SizedBox(width: 8),
+          actions: [
+            StreakCounter(
+              key: StreakCounterKey.key,
+              streakService: _streakService,
+              onStreakUpdated: _onStreakUpdated,
+            ),
+            const SizedBox(width: 8),
+            const ThemeToggleButton(),
+            const SizedBox(width: 8),
           ],
         ),
         body: coursesAsync.when(
