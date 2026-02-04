@@ -26,9 +26,6 @@ class UpdateService {
       // Check connectivity first
       final connectivity = await Connectivity().checkConnectivity();
       if (connectivity.contains(ConnectivityResult.none)) {
-        if (context.mounted) {
-          _showOfflineMessage(context);
-        }
         return;
       }
 
@@ -111,21 +108,6 @@ class UpdateService {
             completeUpdate();
           },
         ),
-        behavior: SnackBarBehavior.floating,
-        margin: const EdgeInsets.all(16),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-      ),
-    );
-  }
-
-  /// Show offline message
-  void _showOfflineMessage(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Text('You are offline. Connect to internet to check for updates.'),
-        duration: const Duration(seconds: 4),
         behavior: SnackBarBehavior.floating,
         margin: const EdgeInsets.all(16),
         shape: RoundedRectangleBorder(
