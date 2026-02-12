@@ -66,8 +66,19 @@ class LessonScreen extends ConsumerWidget {
               height: 1.5,
             ),
             blockquote: textTheme.bodyMedium?.copyWith(
-              color: colorScheme.onSurface.withValues(alpha: 0.6),
+              color: colorScheme.onSurfaceVariant,
               fontStyle: FontStyle.italic,
+              height: 1.5,
+            ),
+            blockquoteDecoration: BoxDecoration(
+              color: colorScheme.surfaceContainerHighest,
+              borderRadius: BorderRadius.circular(8),
+              border: Border(
+                left: BorderSide(
+                  color: colorScheme.primary,
+                  width: 4,
+                ),
+              ),
             ),
             listBullet: TextStyle(
               color: colorScheme.primary,
